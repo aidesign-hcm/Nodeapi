@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
 
-app.use((req,res,next) => {
-    res.status(200).json({
-        message: 'Hello World'
-    })
-})
+// Import router
+const productRouter = require('./api/routes/products')
+const orderRputer = require('./api/routes/order')
+
+app.use('/products', productRouter)
+app.use('/order', orderRputer)
+
 module.exports = app
