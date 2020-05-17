@@ -11,6 +11,7 @@ const orderRputer = require('./api/routes/order')
 
 mongoose.connect('mongodb+srv://aidesign:' + process.env.MONGO_ATLAS_PW + '@cluster0-0oqrv.mongodb.net/test?retryWrites=true&w=majority',
 { useNewUrlParser: true })
+mongoose.Promise = global.Promise
 
 // App Use Libary
 
