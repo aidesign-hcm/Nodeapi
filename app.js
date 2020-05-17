@@ -1,12 +1,16 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+
 
 // Import router
 const productRouter = require('./api/routes/products')
 const orderRputer = require('./api/routes/order')
 
+mongoose.connect('mongodb+srv://aidesign:' + process.env.MONGO_ATLAS_PW + '@cluster0-0oqrv.mongodb.net/test?retryWrites=true&w=majority',
+{ useNewUrlParser: true })
 
 // App Use Libary
 
