@@ -1,13 +1,31 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan')
+var bodyParser = require('body-parser')
 
 // Import router
 const productRouter = require('./api/routes/products')
 const orderRputer = require('./api/routes/order')
 
+
 // App Use Libary
+
 app.use(morgan('dev'))
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+
+// CROS Cross-origin resource sharing
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).json({});
+    }
+  next();
+});
 
 /// Routes Handel Requests 
 app.use('/products', productRouter)
