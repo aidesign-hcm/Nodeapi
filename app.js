@@ -7,7 +7,8 @@ const mongoose = require('mongoose')
 
 // Import router
 const productRouter = require('./api/routes/products')
-const orderRputer = require('./api/routes/order')
+const orderRouter = require('./api/routes/order')
+const userRouter = require('./api/routes/user')
 
 mongoose.connect('mongodb+srv://aidesign:' + process.env.MONGO_ATLAS_PW + '@cluster0-0oqrv.mongodb.net/test?retryWrites=true&w=majority',
 { useNewUrlParser: true })
@@ -35,7 +36,8 @@ app.use((req, res, next) => {
 
 /// Routes Handel Requests 
 app.use('/products', productRouter)
-app.use('/order', orderRputer)
+app.use('/order', orderRouter)
+app.use('/user', userRouter)
 
 app.use((req, res, next) => {
     const error = new Error('Not Found');
